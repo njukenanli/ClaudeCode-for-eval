@@ -1,10 +1,12 @@
 model:
   model: 'azure/gpt-5.5-20260424' # follow litellm model name format
   # put other litellm configs here
+  # api_key: your_key
+  # base_url: https://openrouter.ai/api/v1
 
 agent:
   max_step: 100
-  timeout: 180
+  timeout: 300
   workers: 3
 
   tools:

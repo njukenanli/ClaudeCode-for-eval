@@ -95,6 +95,7 @@ if __name__ == "__main__":
     parser.add_argument("--dataset", type=str, required=True)
     parser.add_argument("--split", type=str, default=None)
     args = parser.parse_args()
+    dataset: list[SWEBenchInstance]
     if args.dataset.endswith("jsonl"):
         with open(args.dataset) as f:
             dataset = [json.loads(i) for i in f]
