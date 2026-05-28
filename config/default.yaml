@@ -1,0 +1,35 @@
+model:
+  model: 'azure/gpt-5.5-20260424' # follow litellm model name format
+  # put other litellm configs here
+
+agent:
+  max_step: 100
+  timeout: 180
+  workers: 3
+
+  tools:
+    - Glob
+    - Grep
+    - Bash
+    - Read
+    - Edit
+    - Write
+    - TodoWrite
+    - WebFetch
+
+  user_prompt: |-  # multiline string
+    You are given a code repository in the current directory (pwd && ls ./).
+    The bug description is:
+    {description}
+    =================================================
+    You task is to fix the bug with the following steps:
+    (1) explore the source codes to find relevant files.
+    (2) write test cases to reproduce the bug.
+    (3) edit the source codes to fix the bug.
+    (4) rerun your written test cases to validate that the bug is fixed. If not, go back to explore the source codes and fix the codes again.
+    (5) remember to delete the test cases you write at last; if you modified the regression tests folder, git restore it.
+    =================================================
+    Notes:
+    (1) Please do not commit your edits. We will do it later.
+    (2) In our setting, each of your response must contain exactly one text content and one tool call. If you want to submit your result, just output one reponse with only text content and without tool call -- a response without tool call means stop and submission. If you have not finished, each of your response must have one tool call to make the session continue.
+
