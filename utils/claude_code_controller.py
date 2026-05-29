@@ -65,7 +65,7 @@ class ClaudeController:
         )
         container.send_command("git config --global --add safe.directory /testbed")
         container.send_command("apt-get install curl -y")
-        container.send_command("curl -fsSL https://claude.ai/install.sh | bash -s -- 2.0.65")
+        container.send_command("curl -fsSL https://claude.ai/install.sh | bash -s -- 2.1.89")
         time.sleep(10)
         container.send_command('alias claude="$HOME/.local/bin/claude"')
 

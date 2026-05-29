@@ -60,8 +60,10 @@ class Agent:
             with open(f"{out_dir}/patch.diff", "w") as f:
                 f.write(res["model_patch"])
             patch = res["model_patch"]
-        except TimeoutError as e:
+        except Exception as e:
+            from traceback import format_exc
             print(instance["instance_id"], e, flush=True)
+            print(format_exc())
         
         server.stop()
         return patch
